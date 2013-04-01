@@ -63,7 +63,7 @@ sleep 2
 sleep 2
 
 # Restore user data from Shared dir if a backup is there
-BACKUP=`ls /Users/Shared/`
+BACKUP=`ls /Users/Shared/ | grep -v ".localized"`
 
 if [[ "$BACKUP" == "" ]]; then
 	echo "No Backup to restore"
