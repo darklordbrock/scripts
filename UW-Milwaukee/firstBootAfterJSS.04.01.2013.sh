@@ -21,7 +21,7 @@ else
 fi
 
 #Set the department in JSS based on machine name
-DEPT=`hostname | sed 's/-/ /g' | awk '{print $1}'`
+DEPT=`hostname | sed 's/-/ /g' | awk '{print $1}' | tr "a-z" "A-Z"`
 /usr/sbin/jamf recon -department $DEPT
 
 #check for any jamf policies for the machine. 
