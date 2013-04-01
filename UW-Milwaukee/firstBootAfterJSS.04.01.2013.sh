@@ -22,11 +22,13 @@ fi
 
 #Set the department in JSS based on machine name
 DEPT=`hostname | sed 's/-/ /g' | awk '{print $1}' | tr "a-z" "A-Z"`
+echo "Setting Department to: " $DEPT
 /usr/sbin/jamf recon -department $DEPT
 
 #check for any jamf policies for the machine. 
+echo "check for any jamf policies"
 /usr/sbin/jamf policy
-sleep 30
+sleep 3
 
 # Trigger manual Printer installs
 /usr/sbin/jamf policy -trigger printdriverBrother
