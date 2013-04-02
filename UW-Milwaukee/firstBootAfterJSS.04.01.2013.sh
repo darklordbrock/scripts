@@ -97,6 +97,9 @@ else
 			mkdir /tmp/$U
 			tar -x /Users/Shared/$BACKUP/$U -C /tmp/$U
 			
+			#copy keychain to new users account
+			cp -f /tmp/$U/Library/Keychains/* /Users/$U/Library/Keychains/
+			
 			#copy the files to the new home folder but not the library folder
 			FILEZ=`ls -a /tmp/$U | grep -v "Library"`
 			for F in $FILEZ; do
