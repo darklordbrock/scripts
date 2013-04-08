@@ -81,7 +81,7 @@ else
 	
 	
 	#Find the users that were on the machine
-	USERZ=`ls /Users/Shared/$BACKUP/ | sed 's/.tar//g'`
+	USERZ=`ls /Users/Shared/$BACKUP/ | sed 's/-HOME.tar//g'`
 		
 	for U in $USERZ; do
 		#Making the new home folder for the AD user account
@@ -95,7 +95,7 @@ else
 		else
 			#expand tar of the user to tmp
 			mkdir /tmp/$U
-			tar -x /Users/Shared/$BACKUP/$U -C /tmp/$U
+			tar -x /Users/Shared/$BACKUP/$U-HOME.tar -C /tmp/$U
 			
 			#copy keychain to new users account
 			#cp -f /tmp/$U/Library/Keychains/* /Users/$U/Library/Keychains/
