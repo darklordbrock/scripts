@@ -98,10 +98,10 @@ else
 			tar -x /Users/Shared/$BACKUP/$U -C /tmp/$U
 			
 			#copy keychain to new users account
-			cp -f /tmp/$U/Library/Keychains/* /Users/$U/Library/Keychains/
+			#cp -f /tmp/$U/Library/Keychains/* /Users/$U/Library/Keychains/
 			
-			#copy the files to the new home folder but not the library folder
-			FILEZ=`ls -a /tmp/$U | grep -v "Library"`
+			#copy the files to the new home folder 
+			FILEZ=`ls -a /tmp/$U`
 			for F in $FILEZ; do
 				#Copy the files into the home dir
 				cp -Rf /tmp/$U/$F /Users/$U/
