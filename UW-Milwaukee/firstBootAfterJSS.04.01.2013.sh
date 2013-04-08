@@ -101,10 +101,10 @@ else
 			#cp -f /tmp/$U/Library/Keychains/* /Users/$U/Library/Keychains/
 			
 			#copy the files to the new home folder 
-			FILEZ=`ls -a /tmp/$U/*/*/Users/`
+			FILEZ=`ls -a /tmp/$U/*/*/Users/$U/`
 			for F in $FILEZ; do
 				#Copy the files into the home dir
-				cp -Rf /tmp/$U/$F /Users/$U/
+				cp -Rf /tmp/$U/*/*/Users/$U/$F /Users/$U/
 				#Security remove the files from the tmp location
 				srm -fr /tmp/$U
 			done
