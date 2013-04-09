@@ -97,9 +97,6 @@ else
 			mkdir /tmp/$U
 			tar -xzf /Users/Shared/$BACKUP/$U-HOME.tar -C /tmp/$U
 			
-			#copy keychain to new users account
-			#cp -f /tmp/$U/Library/Keychains/* /Users/$U/Library/Keychains/
-			
 			#copy the files to the new home folder 
 			FILEZ=`ls -a /tmp/$U/*/*/Users/$U/`
 			for F in $FILEZ; do
