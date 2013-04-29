@@ -34,18 +34,37 @@ echo $TMD
 if [ "$TMD" == "false" ] ; then
 	echo "User clicked Cancel"
 	exit 1
-
+	
 else
-
+	
 	echo "User Selected " $TMD " as their Time Machine Drive"
 	
 	TMDRECORD=`diskutil info $TMD | grep "Partition Type:" | awk '{print $3}'`
 	TMDFORMAT=`diskutil info $TMD | grep "File System Personality:" | awk '{print $4 $5}'`
 	DISK=`diskutil info $TMD | grep "Part of Whole:" | awk '{print $4}'`
+	COREDISK=`diskutil corestorage info $DISK | grep "Conversion Status:" | awk '{print $3}'`
 	
 	echo "Time Machine Drive Selected Partition Type: " $TMDRECORD
 	echo "Time Machine Drive Selected File System Personality: " $TMDFORMAT
 	echo "Time Machine Drive Selected Part of Disk: " $DISK
+	
+	if [ "$COREDISK" == "Complete" ]; then
+		echo "Disk is already encrypted"
+		
+		echo "tmutil setdestination"
+		tmutil setdestination /Volumes/$TMD
+
+		echo "tmutil enable for automatic backups"
+		tmutil enable
+
+		echo "tmutil enable local snapshots"
+		tmutil enablelocal
+		
+		exit 0
+	else
+		echo "Disk is not already encrypted"
+	fi
+	
 	
 	if [ "$TMDRECORD" != "Apple_HFS" ] ; then
 		
